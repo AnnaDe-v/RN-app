@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet} from "react-native";
-import CheckBox from '@react-native-community/checkbox';
+import { CheckBox } from 'react-native-elements';
 
 
 const ToDoItem = ({idx, name, isDone, toggleCheckedToDo}) => {
@@ -9,9 +9,10 @@ const ToDoItem = ({idx, name, isDone, toggleCheckedToDo}) => {
             style={styles.item}
             onPress={() => toggleCheckedToDo(idx)}
         >
-            {/*<CheckBox*/}
-            {/*    value={isDone}*/}
-            {/*/>*/}
+            <CheckBox
+                checked={isDone}
+
+            />
             <Text style={styles.name}>{name}</Text>
         </View>
     );
@@ -25,11 +26,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 10,
         marginBottom: 10,
-        marginHorizontal: '5%'
+        marginHorizontal: '5%',
+        flexDirection: 'row',
+
     },
     name: {
         fontSize: 18,
-        marginLeft: 10
+        marginLeft: 5
     }
 })
 

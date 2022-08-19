@@ -1,25 +1,22 @@
-import {Button, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button} from '@rneui/themed';
 import {useState} from "react";
 import ToDoItem from "./ToDoItem";
 
 export default function App() {
     const [todos, setTodos] = useState([
         {
-            _id: 1,
+            _id: Date.now(),
             name: 'Buy everything',
             isDone: true,
         },
-        {
-            _id: 2,
-            name: 'Buy nothing',
-            isDone: true,
-        }
+
     ])
     const [name, setName] = useState('')
 
 
     const addNewTaskHandler = () => {
-        if(name) {
+        if (name) {
             setTodos(prev => [...prev, {_id: todos.length, name, isDone: false}])
         }
 
@@ -34,6 +31,7 @@ export default function App() {
     return (
         <View style={styles.container}>
             <Text style={styles.heading}>TODO</Text>
+
             <View style={styles.actions}>
                 <TextInput
                     style={styles.input}
@@ -42,12 +40,17 @@ export default function App() {
                     onChangeText={text => setName(text)}
                     placeholder='What are you going to do?'
                 />
+
                 <Button
-                    style={styles.buttonAdd}
-                    title='Add'
+                    title="Add"
                     onPress={addNewTaskHandler}
+                    buttonStyle={{
+                        backgroundColor: 'rgb(123,72,243)',
+                        borderRadius: 10,
+                    }}
                 />
             </View>
+
             <ScrollView>
                 {todos &&
                     todos.map((t, idx) => (
@@ -74,18 +77,16 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold',
     },
-    // actions: {
-    //
-    // },
+    actions: {
+        padding: 20,
+    },
     input: {
         borderRadius: 20,
         width: '70%',
         fontSize: 20,
-        padding: 10,
         marginVertical: 25,
         marginHorizontal: '15%'
     },
-    buttonAdd: {
-        maxWidth: '30%'
-    }
+
 });
+
