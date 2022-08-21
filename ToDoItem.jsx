@@ -1,20 +1,24 @@
 import React from 'react';
-import {Text, View, StyleSheet} from "react-native";
+import {Text, View, StyleSheet, TouchableHighlight} from "react-native";
 import { CheckBox } from 'react-native-elements';
 
 
 const ToDoItem = ({idx, name, isDone, toggleCheckedToDo}) => {
     return (
-        <View
-            style={styles.item}
-            onPress={() => toggleCheckedToDo(idx)}
-        >
-            <CheckBox
-                checked={isDone}
+        <TouchableHighlight
+            underlayColor='transparent'
+            onPress={() => toggleCheckedToDo(idx)}>
+            <View
+                style={styles.item}
+            >
+                <CheckBox
+                    onPress={() => toggleCheckedToDo(idx)}
+                    checked={isDone}
+                />
+                <Text style={styles.name}>{name}</Text>
+            </View>
+        </TouchableHighlight>
 
-            />
-            <Text style={styles.name}>{name}</Text>
-        </View>
     );
 };
 

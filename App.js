@@ -17,15 +17,15 @@ export default function App() {
 
     const addNewTaskHandler = () => {
         if (name) {
-            setTodos(prev => [...prev, {_id: todos.length, name, isDone: false}])
+            setTodos(prev => [{_id: todos.length, name, isDone: false}, ...prev])
         }
-
         setName('')
     }
 
     const toggleCheckedToDo = idx => {
         const newArray = [].concat(todos)
         newArray[idx].isDone = !newArray[idx].isDone
+        setTodos(newArray)
     }
 
     return (
@@ -53,12 +53,12 @@ export default function App() {
 
             <ScrollView>
                 {todos &&
-                    todos.map((t, idx) => (
+                    todos.map((todo, idx) => (
                         <ToDoItem
-                            key={`_todo_${t._id}`}
+                            key={`_todo_${todo._id}`}
                             idx={idx}
-                            name={t.name}
-                            isDone={t.isDone}
+                            name={todo.name}
+                            isDone={todo.isDone}
                             toggleCheckedToDo={toggleCheckedToDo}
                         />
                     ))}
